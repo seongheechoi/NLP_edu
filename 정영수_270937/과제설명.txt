@@ -1,0 +1,38 @@
+(1) 어느정도 기능을 구현 했는지 적어주세요.
+
+	-. sequence.load_data('data.txt')를 통해 데이터셋 load 하여 입력함.
+
+	-. 하이퍼 파라미터 튜닝은 
+	wordvec_size = 16
+	hideen_size = 128
+	batch_size = 128
+	max_epoch = 25
+	max_grad = 5.0
+	model = PeekySeq2seq(vocab_size, wordvec_size, hideen_size)
+	optimizer = Adam()
+	로 하였음.
+
+	-. 검증결과 : 10.610% 로 10% 이상 달성함.
+
+(2) 전체 프로그래밍 구조 설명을 적어 주세요.
+
+	-. 데이터 로드, train_test 데이터 분리
+
+	-. vocab 사전 만듬
+
+	-. encoder 클래스는 문자열을 받아 벡터 h로 변환
+	(embedding 계층 : 문자를 id를 벡터로 변환 -> LSTM계층으로 입력->시간방향으로 은닉상태와 셀을 출력, 위로는 은닉상태만 출력
+	-> LSTM 계층의 위쪽 출력은 폐기, Encoder 마지막 문자를 처리후, LSTM 계층이 은닉 상태 h를 출력)
+
+	-. 밀집 벡터h가 Decoder 로 전달
+
+	-. Decoder : TimeEmbedding, TimeLSTM, TimeAffine, softmax -> loss 측정
+
+	-. Score로 def generate감
+
+(3) 과제 구현 시 느낀 점을 적어 주세요.
+
+	-. 추석연휴 때문에 업무를 하면서 수업듣고, 과제수행하고 하는데,
+	시간적으로 많은 제약이 있었지만, 이렇게 딥러닝으로 사칙연산이 구현되는 것이
+	신기하고 더 공부하고 싶은 생각이 듭니다. 아직 정확하게 이해하지 못하여
+ 	반복하며 과정이 끝나고도 다시 공부할 예정입니다. 
